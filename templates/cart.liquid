@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="row">
+    <div class="twelve-columns">
+      <h3>My Bag</h3>
+      <hr class="hr--medium">
+    </div>
+  </div>
+
+  {% if cart.item_count < 1 %}
+    <div class="twelve-columns">
+      Your bag is currently empty.
+    </div>
+  {% else %}
+    <div class="row row--no-padding">
+      <div class="three-columns">
+        <h4>Item</h4>
+      </div>
+      <div class="three-columns">
+        <h4>Size</h4>
+      </div>
+      <div class="three-columns">
+        <h4>Quantity</h4>
+      </div>
+      <div class="three-columns">
+        <h4>Price</h4>
+      </div>
+
+      {% for item in cart.items %}
+        <div class="three-columns">
+          <p><a href="{{ item.url }}">{{ item.product.title }}</a></p>
+        </div>
+        <div class="three-columns">
+          <p>
+            {% if item.variant.title contains 'Default' %}
+              &mdash;
+            {% else %}
+              {{ item.variant.title }}
+            {% endif %}
+          </p>
+        </div>
+        <div class="three-columns">
+          <p>{{ item.quantity }}</p>
+        </div>
+        <div class="three-columns clearfix">
+          <p class="left">{{ item.price | money }}</p>
+          <p class="right u-light">
+            <a class="ex" href="/cart/change?line={{ forloop.index }}&quantity=0">X</a>
+          </p>
+        </div>
+      {% endfor %}
+
+      <div class="twelve-columns">
+        <hr class="hr--medium">
+      </div>
+
+      <div class="three-columns offset-nine">
+        <h3>Subtotal</h3>
+        {{ cart.total_price | money }}
+
+        <form action="/cart" method="post">
+          <input class="checkout" type="submit" name="checkout" value="Check Out"/>
+        </form>
+      </div>
+
+    </div>
+  {% endif %}
+
+</div>

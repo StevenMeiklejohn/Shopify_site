@@ -1,0 +1,15 @@
+{% if collections.shop-home.image %}
+  <div class="container">
+    <div class="row">
+      <div class="twelve-columns">
+        <div class="image image--hero" style="background-image: url({{ collections.shop-home.image | img_url: '2048x2048' }})"></div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% assign collection = collections.ready-to-wear %}
+{% include 'collection' %}
+
+<!-- {% assign collection = collections.off-duty %}
+{% include 'collection' %} -->

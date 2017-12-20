@@ -1,0 +1,88 @@
+
+{% if collections.home.image %}
+  <div class="container">
+    <div class="row no-padding-bottom--mobile">
+      <div class="twelve-columns">
+        <a href="/collections">
+          <div class="carousel">
+            <div class="image image--hero" style="background-image: url({{ 'CJM_MAIRI4_HRES-104.jpg' | file_url }})"></div>
+            <div class="image image--hero" style="background-image: url({{ 'OFFDUTY_0675_HP1.jpg' | file_url }})"></div>
+            <div class="image image--hero" style="background-image: url({{ 'OFFDUTY_1058_HP2.jpg' | file_url }})"></div>
+            <div class="image image--hero" style="background-image: url({{ 'OFFDUTY_0061_HP3.jpg' | file_url }})"></div>
+            <div class="image image--hero" style="background-image: url({{ 'OFFDUTY_0390_HP4.jpg' | file_url }})"></div>
+            <div class="image image--hero" style="background-image: url({{ 'CJM_MAIRI4_HRES-468.jpg' | file_url }})"></div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+<div class="container">
+  <div class="row">
+    <div class="three-columns">
+      <h3>Shop</h3>
+      <hr class="hr--left hr--medium">
+      <h2>
+        New<br>
+        Arrivals
+      </h2>
+    </div>
+    {% for product in collections.new-arrivals.products limit:3 %}
+      {% assign image = product.images[0] %}
+      <div class="three-columns product product-{{ forloop.index }}">
+        <a href="{{ product.url }}">
+          <div class="image image--product" style="background-image: url({{ image | img_url: 'grande' }})"></div>
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="padding"></div>
+
+<div class="container">
+  <div class="row article">
+    {% for article in blogs.backstage.articles limit:1 %}
+      <div class="six-columns">
+        <a href="{{ article.url }}">
+          {% if article.image %}
+            <img src="{{ article.image | img_url: 'original' }}"/>
+          {% else %}
+            {{ article.content }}
+          {% endif %}
+        </a>
+      </div>
+      <div class="six-columns padding-left">
+        <h3>Backstage</h3>
+        <div class="hr-wrapper">
+          <hr class="hr--right hr--medium">
+          <img class="hr-logo hide-on-mobile" src="{{ 'logomark.svg' | asset_url }}" />
+        </div>
+        <a href="{{ article.url }}">
+          <h2>{{ article.title }}</h2>
+        </a>
+        {{ article.excerpt }}
+        <a class="arrow-link" href="{{article.url }}"><span class="arrow"></span></a>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="padding"></div>
+
+<h2 class="h2--center">Instagram</h2>
+<hr class="hr--medium">
+<div class="container">
+  <div class="row">
+    {% for article in blogs.instagram.articles limit:4 %}
+      <div class="three-columns instagram">
+        <a target="_blank" href="{{ article.title }}">
+          <div class="image" style="background-image: url({{ article.image | img_url: 'grande' }})"/></div>
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="padding"></div>

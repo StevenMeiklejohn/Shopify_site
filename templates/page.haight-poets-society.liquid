@@ -1,0 +1,71 @@
+<div class="lookbook lookbook--hidden">
+  <span class="close"></span>
+  {% for i in (1..23) %}
+    <figure class="">
+      <div class="image image--lookbook" style="background-image: url({{ 'HPS-' | append: forloop.index | append: '_2048x2048.jpg'  | file_url }})"></div>
+      <figcaption>
+        <span class="left"><span class="index">{{ i }}</span>/23</span>
+        <a href="/collections/haight-poets-society" class="right">Shop The Look</a>
+      </figcaption>
+    </figure>
+  {% endfor %}
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="twelve-columns">
+      <a href="/collections/haight-poets-society">
+        <div class="image image--hero" style="background-image: url({{ 'CJM_MAIRI_HIGHRES_COLOUR-2-10_Crop.jpg' | file_url }})"></div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="five-columns padding-right">
+      <h3>Stories</h3>
+      <hr class="hr--left hr--medium">
+      <h2>
+        Haight Poets Society
+      </h2>
+      <p>Haight Poets Society is inspired by San Francisco in the late 1960's, Haight - Ashbury an area synonymous with the hippie movement and American counterculture where musicians such as Janis Joplin and Jefferson Airplane resided alongside the Beat Generation poets and had their own, unconventional, free-spirited society.</p>
+    </div>
+    <div class="seven-columns">
+      <img src="{{ 'HAIGHT-HOME-2_2048x2048.jpg' | file_url }}">
+      <a href="/products/francoise" class="caption caption--right">Francoise</a>
+    </div>
+    <svg class="big-logo parallax-up"><use xlink:href="#icon-logomark"></use></svg>
+  </div>
+
+  <div class="row">
+    <div class="six-columns">
+      <div class="parallax-down">
+        <img class="story--margin-top" src="{{ 'HAIGHT-HOME-3_2048x2048.jpg' | file_url }}">
+        <a href="/products/chloe" class="caption">Chloe</a>
+      </div>
+    </div>
+    <div class="six-columns padding-left">
+      <h3>&nbsp;</h3>
+      <hr class="hr--right hr--medium">
+      <br><br>
+      <p>
+        Inspired by the rock stars who wanted to be known as poets and the Beat poets with their equally hedonistic lifestyles who were essentially rock stars. Capturing a feeling of the local Poetry clubs... a softness, bringing together a romantic, preppy, poetic feel and creating a intelligent, bohemian look with our signature rock 'n' roll edge.
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="seven-columns">
+      <h3>&nbsp;</h3>
+      <hr class="hr--left hr--medium">
+      <a class="arrow--open-lookbook" href="#">
+        <h2>Lookbook</h2>
+      </a>
+      <a class="arrow-link arrow--open-lookbook" href="#"><span class="arrow"></span></a>
+    </div>
+    <div class="five-columns">
+      <img class="img--lookbook-link" src="{{ 'HAIGHT-HOME-4_2048x2048.jpg' | file_url }}">
+    </div>
+  </div>
+</div>

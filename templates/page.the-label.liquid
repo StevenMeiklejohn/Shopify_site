@@ -1,0 +1,38 @@
+<div class="container">
+  <div id="about" class="row">
+    {% assign page = pages.mairi-mcdonald %}
+    <div class="six-columns padding-right">
+      <h3>The Label</h3>
+      <hr class="hr--left hr--medium">
+      <h2>{{ page.title }}</h2>
+      {{ page.content }}
+    </div>
+    <div class="six-columns">
+      <img src="{{ page.handle | append: '_2048x2048.jpg' | file_url }}"/>
+    </div>
+  </div>
+  <div id="contact" class="row">
+    {% assign page = pages.contact %}
+    <div class="three-columns offset-six">
+      <h3>{{ page.title }}</h3>
+    </div>
+    {% assign page = pages.press-sales-enquiries %}
+    <div class="three-columns">
+      <h3>{{ page.title }}</h3>
+    </div>
+    <div class="six-columns offset-six min-height">
+      <div class="hr-wrapper">
+        <hr class="hr--right--no-padding hr--medium hr--top hr--actually-left">
+        <img class="hr-logo hr-logo--top" src="{{ 'logomark.svg' | asset_url }}" />
+      </div>
+    </div>
+    {% assign page = pages.contact %}
+    <div class="three-columns offset-six">
+      {{ page.content }}
+    </div>
+    {% assign page = pages.press-sales-enquiries %}
+    <div class="three-columns">
+      {{ page.content }}
+    </div>
+  </div>
+</div>

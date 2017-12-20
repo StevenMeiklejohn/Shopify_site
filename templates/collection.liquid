@@ -1,0 +1,11 @@
+{% if collection.image %}
+  <div class="container">
+    <div class="row">
+      <div class="twelve-columns">
+        <div class="image image--hero" style="background-image: url({{ collection.image | img_url: '2048x2048' }})"></div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% include 'collection' %}

@@ -1,0 +1,74 @@
+<div class="container">
+  <div class="row">
+    <div class="twelve-columns">
+      {% if article.image %}
+        <div class="image image--hero image--article" style="background-image: url({{ article.image | img_url: '2048x2048' }})"></div>
+      {% else %}
+        {{ article.content }}
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% assign parts = article.content | split: '<p>---</p>' %}
+
+<h3 class="h3--center">{{ article.published_at | date: "%B %d, %Y" }}</h3>
+
+<div class="hr-wrapper hr-wrapper--relative">
+  <hr class="hr--medium hr--margin-top">
+  <img class="hr-logo hr-logo--center hide-on-mobile" src="{{ 'logomark.svg' | asset_url }}" />
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="ten-columns offset-one">
+      {% if article.image %}
+        <h2 class="h2--center">{{ parts[0] }}</h2>
+      {% else %}
+        <h2 class="h2--center">{{ article.title }}</h2>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% if parts[1] %}
+  {% if parts[2] %}
+    <div class="container">
+      <div class="row">
+        <div class="twelve-columns columns--text">
+          {{ parts[1] }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="twelve-columns">
+          {{ parts[2] }}
+        </div>
+      </div>
+    </div>
+  {% else %}
+  <div class="container">
+    <div class="row">
+      <div class="twelve-columns">
+        {{ parts[1] }}
+      </div>
+    </div>
+  </div>
+  {% endif %}
+{% endif %}
+
+
+{% assign collection_handle = article.tags[0] | append: "-article" %}
+{% assign collection = collections[collection_handle] %}
+{% if collection %}
+  {% if collection.products.length > 0 %}
+    <h2 class="h2--center">Shop the Collection</h2>
+    <hr class="hr--medium hr--margin-top">
+    <div class="container">
+      <div class="row">
+        {% for product in collection.products %}
+          {% include 'product' %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+{% endif %}

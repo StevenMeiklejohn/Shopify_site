@@ -1,0 +1,132 @@
+<div class="page-overlay">
+  <div class="close"></div>
+  {% for media in product.images %}
+    <figure style="background-image: url({{ media.src | product_img_url: 'original' }})"></figure>
+  {% endfor %}
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="six-columns">
+
+      {% assign image = product.images[0] %}
+      <div class="image image--product-page" style="background-image: url({{ image | img_url: 'original' }})"></div>
+      {% if product.images.size > 1 %}
+        <div class="thumbs clearfix">
+          {% for media in product.images %}
+            <div class="thumb">
+              {% if image == media %}
+                <div class="image image--product-thumb active" style="background-image: url({{ media.src | product_img_url: 'grande' }})" data-large="{{ media.src | product_img_url: 'original' }}">
+                </div>
+              {% else %}
+                <div class="image image--product-thumb" style="background-image: url({{ media.src | product_img_url: 'grande' }})" data-large="{{ media.src | product_img_url: 'original' }}">
+                </div>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+    </div>
+    <div class="six-columns padding-left">
+      <div class="hr-wrapper">
+        <hr class="hr--right hr--medium">
+        <img class="hr-logo" src="{{ 'logomark.svg' | asset_url }}" />
+      </div>
+
+      <h2 class="h2--product">{{ product.title }}</h2>
+      {% assign parts = product.description | split: '<p>---</p>' %}
+      {{ parts[0] }}
+      <hr class="hr--medium">
+
+      {% assign variant = product.selected_or_first_available_variant %}
+      <form action="/cart/add" method="post" enctype="multipart/form-data">
+
+        {% if variant.price > 0 %}
+          <span class="value">{{ variant.price | money }}</span>
+        {% endif %}
+
+        {% if product.variants.size > 1 %}
+          <p class="no-margin">Select a Size: </p>
+          <div class="clearfix">
+            <div class="left">
+              <ul class="sizes">
+                {% for variant in product.variants %}
+                  <li>
+                    <a href="#" class="{% if variant == product.selected_or_first_available_variant %} active {% endif %}" data-id="{{ variant.id }}" data-value="{{ variant.price | money }}">
+                      {{ variant.title }}
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+            <div class="right">
+              <a href="/pages/size-guide">Size Guide</a>
+            </div>
+          </div>
+        {% endif %}
+
+        <input class="hidden product-id" name="id" type="hidden" value="{{ product.selected_or_first_available_variant.id }}" />
+
+        {% assign offduty = false %}
+        {% for collection in product.collections %}
+          {% if collection.handle == 'off-duty' %}
+            {% assign offduty = true %}
+          {% endif %}
+        {% endfor %}
+
+        {% if offduty %}
+          {% if variant.price > 0 %}
+            <input type="submit" name="add" class="place-order u-track" value="Buy It Now"/>
+          {% else %}
+            <input type="submit" name="add" class="place-order u-track" value="Coming Soon"/>
+          {% endif %}
+        {% else %}
+          <input type="submit" name="add" class="place-order u-track" value="Place Order"/>
+        {% endif %}
+
+      </form>
+
+      {% if parts[1] %}
+        <h3>Details</h3>
+        {{ parts[1] }}
+        <hr class="hr--medium">
+      {% endif %}
+
+      {% if offduty %}
+        {% if variant.price > 0 %}
+          <h3>Deliveries &amp; Returns</h3>
+          {% assign delivieries = pages.deliveries-returns-off-duty %}
+          {{ delivieries.content }}
+          <hr class="hr--medium">
+        {% endif %}
+      {% else %}
+        <h3>Deliveries &amp; Returns</h3>
+        {% assign delivieries = pages.deliveries-returns %}
+        {{ delivieries.content }}
+        <hr class="hr--medium">
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+
+{% assign collection_handles = 'queens-of-noise, electric-eclectic, haight-poets-society' | split: ', ' %}
+{% assign id = product.id %}
+{% for collection in product.collections %}
+  {% for handle in collection_handles %}
+    {% if handle contains collection.handle %}
+      <h2 class="h2--center">{{ collection.title }}</h2>
+      <hr class="hr--medium hr--margin-top">
+      <div class="container">
+        <div class="row">
+          {% for product in collection.products %}
+            {% unless product.id == id %}
+              {% include 'product' %}
+            {% endunless %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+{% endfor %}

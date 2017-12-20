@@ -1,0 +1,71 @@
+<div class="lookbook lookbook--hidden">
+  <span class="close"></span>
+  {% for i in (1..15) %}
+    <figure class="">
+      <div class="image image--lookbook" style="background-image: url({{ 'PG_' | append: forloop.index | append: '_2048x2048.jpg'  | file_url }})"></div>
+      <figcaption>
+        <span class="left"><span class="index">{{ i }}</span>/15</span>
+        <a href="/collections/electric-eclectic" class="right">Shop The Look</a>
+      </figcaption>
+    </figure>
+  {% endfor %}
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="twelve-columns">
+      <a href="/collections/electric-eclectic">
+        <div class="image image--hero" style="background-image: url({{ 'qon_one_2048x2048.jpg' | file_url }})"></div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="five-columns padding-right">
+      <h3>Stories</h3>
+      <hr class="hr--left hr--medium">
+      <h2>
+        Electric<br>
+        Eclectic
+      </h2>
+      <p>Electric Eclectic tells the story of the girl with the band. Travelling the world in search of something iconic to add to her eclectic wardrobe. She is attracted to the laidback LA vibe and her style reflects an element of Californian cool with a dark edge.  A free spirit, a dreamer, a believer in fate.  She lives her life by love, peace and music...</p>
+    </div>
+    <div class="seven-columns">
+      <img src="{{ 'qon_two_2048x2048.jpg' | file_url }}">
+      <a href="/products/example-three" class="caption caption--right">Mosshart</a>
+    </div>
+    <svg class="big-logo parallax-up"><use xlink:href="#icon-logomark"></use></svg>
+  </div>
+
+  <div class="row">
+    <div class="six-columns">
+      <div class="parallax-down">
+        <img class="story--margin-top" src="{{ 'qon_three_2048x2048.jpg' | file_url }}">
+        <a href="/products/example-one" class="caption">Joplin</a>
+      </div>
+    </div>
+    <div class="six-columns padding-left">
+      <h3>&nbsp;</h3>
+      <hr class="hr--right hr--medium">
+      <br><br>
+      <p>
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="seven-columns">
+      <h3>&nbsp;</h3>
+      <hr class="hr--left hr--medium">
+      <a class="arrow--open-lookbook" href="#">
+        <h2>Lookbook</h2>
+      </a>
+      <a class="arrow-link arrow--open-lookbook" href="#"><span class="arrow"></span></a>
+    </div>
+    <div class="five-columns">
+      <img class="img--lookbook-link" src="{{ 'qon_four_2048x2048.jpg' | file_url }}">
+    </div>
+  </div>
+</div>

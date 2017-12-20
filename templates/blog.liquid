@@ -1,0 +1,25 @@
+<div class="container">
+  {% for article in blogs.backstage.articles %}
+    <div class="row article {% cycle 'article--odd', 'article--even' %}">
+      <div class="six-columns">
+        <a href="{{article.url }}">
+          {% if article.image %}
+            <img src="{{ article.image | img_url: 'original' }}"/>
+          {% else %}
+            {{ article.content }}
+          {% endif %}
+        </a>
+      </div>
+      <div class="six-columns {% cycle 'padding-left', 'padding-right' %}">
+        <a href="{{article.url }}">
+        <h3>{{ article.published_at | date: "%B %d, %Y" }}</h3>
+        <hr class="{% cycle 'hr--right', 'hr--left' %} hr--medium">
+        <a href="{{article.url }}">
+          <h2>{{ article.title }}</h2>
+        </a>
+        {{ article.excerpt }}
+        <a class="arrow-link" href="{{article.url }}"><span class="arrow"></span></a>
+      </div>
+    </div>
+  {% endfor %}
+</div>

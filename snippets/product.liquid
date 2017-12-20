@@ -1,0 +1,16 @@
+{% assign image = product.images[0] %}
+{% assign variant = product.selected_or_first_available_variant %}
+<div class="three-columns product product--grid {% for tag in product.tags %}product--{{ tag | downcase }}{% endfor %}">
+  <a href="{{ product.url }}">
+    <div class="image image--product" style="background-image: url({{ image | img_url: 'grande' }})"></div>
+  </a>
+  <hr class="hr--medium">
+  <div class="product-details clearfix">
+    <span class="left"><h4><a href="{{ product.url }}">{{ product.title }}</a></h4></span>
+    {% if variant.price > 0 %}
+      <span class="right"><h4>{{ variant.price | money }}</h4></span>
+    {% else %}
+      <span class="right"><h4>Coming Soon</h4></span>
+    {% endif %}
+  </div>
+</div>
